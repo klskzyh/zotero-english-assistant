@@ -1,6 +1,6 @@
 # 英文助手（Zotero 插件）
 
-一个装进 Zotero 的英文阅读助手：**划词翻译**、**整本 / 分部词频统计**、**单词本**，都在右侧栏里，共用同一套设置。
+适用于 Zotero 的英文阅读助手插件，功能包含：**划词翻译**、**整本 / 分部词频统计**、**单词本**，都在右侧栏里，共用同一套设置。
 
 ![版本](https://img.shields.io/badge/版本-0.1.0--beta.1-orange)
 ![Zotero](https://img.shields.io/badge/Zotero-7.0%20~%2010.x-blue)
