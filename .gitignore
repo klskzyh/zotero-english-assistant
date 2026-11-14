@@ -1,0 +1,18 @@
+# 从 Zotero 安装里解出来的应用源码。体积大、可随时重新导出，
+# 导出方法见 docs/zotero-api-notes.md 第 0 节。
+tmp/zotero-src/
+
+# tmp 下由脚本生成的预览产物，随时能重新生成（生成脚本本身要留在仓库里）
+tmp/*.html
+tmp/*.png
+
+# 系统杂物
+Thumbs.db
+desktop.ini
+
+# 打包产物：由 npm run build 生成，用 Releases 分发，不进版本控制
+dist/
+
+# 依赖与临时文件
+node_modules/
+*.log

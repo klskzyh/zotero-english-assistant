@@ -1,0 +1,33 @@
+{
+  "name": "zotero-english-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zotero 插件「英文助手」：划词翻译（结合 PDF 上下文与文献信息）、词频统计与单词本",
+  "license": "MIT",
+  "author": "klskzyh",
+  "homepage": "https://github.com/klskzyh/zotero-english-assistant",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klskzyh/zotero-english-assistant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/klskzyh/zotero-english-assistant/issues"
+  },
+  "keywords": ["zotero", "zotero-plugin", "translation", "wordfreq", "vocabulary"],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "icons": "python scripts/make-icons.py",
+    "install": "node scripts/install.mjs",
+    "release": "node scripts/build.mjs && node scripts/install.mjs",
+    "check": "node scripts/check.mjs",
+    "selftest": "node scripts/selftest.mjs && node scripts/wordfreq-selftest.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "verify": "node scripts/check.mjs && node scripts/selftest.mjs && node scripts/wordfreq-selftest.mjs && node scripts/smoke.mjs",
+    "lemma-audit": "node scripts/wordfreq-lemma-audit.mjs",
+    "demo": "node scripts/wordfreq-demo.mjs"
+  }
+}

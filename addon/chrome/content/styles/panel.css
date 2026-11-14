@@ -1,0 +1,405 @@
+/* 英文助手 · 翻译区块的界面样式。
+ * 颜色一律走 Zotero 自己的 CSS 变量，跟随明暗主题。 */
+
+/* 面板建在 XUL 文档里。这里显式写出各元素的 display，
+ * 不去依赖 XUL 文档是否加载了 HTML 的默认样式表。
+ * 下面用 flex 布局的规则写在后面，会覆盖这里的 block。 */
+.ds-panel,
+.ds-panel-body,
+.ds-entry,
+.ds-entry-head,
+.ds-source,
+.ds-result,
+.ds-block,
+.ds-headword,
+.ds-translation,
+.ds-context-meaning,
+.ds-footer,
+.ds-error,
+.ds-hint,
+.ds-warn,
+.ds-pending,
+.ds-ctx-text,
+.ds-ctx-gloss,
+.ds-kid-p,
+.ds-sentence,
+.ds-text,
+.ds-ex-source,
+.ds-ex-trans,
+.ds-popup,
+.ds-popup-status,
+.ds-actions,
+.ds-warn-actions {
+  display: block;
+}
+
+.ds-senses,
+.ds-examples {
+  display: block;
+  margin: 0;
+  padding-inline-start: 18px;
+}
+
+.ds-senses > li,
+.ds-examples > li {
+  display: list-item;
+}
+
+button.ds-btn,
+button.ds-link,
+button.ds-popup-button {
+  font-family: inherit;
+}
+
+/* ── 条目面板区块 ───────────────────────────────── */
+
+.ds-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	font-size: 1em;
+	line-height: 1.6;
+}
+
+.ds-panel-body {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ds-hint {
+	color: var(--fill-secondary, #767676);
+	padding: 6px 0;
+}
+
+.ds-warn,
+.ds-pending {
+	border: 1px solid var(--color-border, rgba(0, 0, 0, 0.15));
+	border-radius: 6px;
+	padding: 8px 10px;
+	background: var(--fill-quinary, rgba(0, 0, 0, 0.03));
+}
+
+.ds-pending-error {
+	border-color: var(--color-red, #d33);
+}
+
+.ds-warn-actions {
+	margin-top: 8px;
+	display: flex;
+	gap: 8px;
+}
+
+.ds-btn {
+	padding: 3px 10px;
+	border-radius: 4px;
+	border: 1px solid var(--color-border, rgba(0, 0, 0, 0.2));
+	background: var(--material-background, #fff);
+	color: inherit;
+	cursor: pointer;
+}
+
+.ds-btn:hover {
+	background: var(--fill-quinary, rgba(0, 0, 0, 0.06));
+}
+
+.ds-entry {
+	border: 1px solid var(--color-border, rgba(0, 0, 0, 0.15));
+	border-radius: 6px;
+	padding: 8px 10px;
+	background: var(--material-background, transparent);
+}
+
+.ds-entry-head {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+	margin-bottom: 4px;
+}
+
+.ds-badge {
+	background: var(--color-accent, #2b7cd3);
+	color: #fff;
+	border-radius: 3px;
+	padding: 0 6px;
+	font-size: 0.8em;
+	line-height: 1.6;
+}
+
+.ds-badge-error {
+	background: var(--color-red, #d33);
+}
+
+.ds-meta {
+	color: var(--fill-secondary, #767676);
+	font-size: 0.8em;
+}
+
+.ds-actions {
+	margin-inline-start: auto;
+	display: flex;
+	gap: 8px;
+}
+
+.ds-link {
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--color-accent, #2b7cd3);
+	cursor: pointer;
+	font-size: 0.85em;
+}
+
+.ds-link:hover {
+	text-decoration: underline;
+}
+
+.ds-source {
+	color: var(--fill-secondary, #767676);
+	font-size: 0.9em;
+	border-inline-start: 2px solid var(--color-border, rgba(0, 0, 0, 0.15));
+	padding-inline-start: 6px;
+	margin-bottom: 6px;
+	word-break: break-word;
+}
+
+.ds-result {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+/* 词条行当标题用，下面压一条分隔线，和后续的段落标签拉开层次 */
+.ds-headword {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	flex-wrap: wrap;
+	padding-bottom: 6px;
+	border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+}
+
+.ds-word {
+	font-size: 1.15em;
+	font-weight: 600;
+}
+
+/* 本书词次：贴在词条那一行的最右侧（margin 自动吃掉左边的空隙） */
+.ds-count {
+	margin-inline-start: auto;
+	color: var(--fill-secondary, #767676);
+	font-size: 0.85em;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+.ds-pron {
+	color: var(--fill-secondary, #767676);
+	font-size: 0.9em;
+}
+
+.ds-senses {
+	margin: 0;
+	padding-inline-start: 18px;
+}
+
+/* 带标签的段落里，列表贴着标签，别再撑出一段空白 */
+.ds-block > .ds-senses,
+.ds-block > .ds-examples {
+	margin-top: 0;
+}
+
+.ds-senses > li {
+	margin-bottom: 2px;
+}
+
+.ds-pos {
+	color: var(--color-accent, #2b7cd3);
+	font-style: italic;
+	margin-inline-end: 4px;
+}
+
+.ds-reg {
+	color: var(--fill-secondary, #767676);
+	font-size: 0.85em;
+	margin-inline-start: 4px;
+}
+
+.ds-context-meaning {
+	border-inline-start: 3px solid var(--color-accent, #2b7cd3);
+	background: var(--fill-quinary, rgba(43, 124, 211, 0.06));
+	padding: 6px 8px;
+	border-radius: 0 4px 4px 0;
+}
+
+.ds-ctx-gloss {
+	font-weight: 600;
+}
+
+.ds-ctx-text {
+	font-weight: 400;
+	color: var(--fill-secondary, #6a6a6a);
+}
+
+/* 母语幼儿模式的分段解释：就是几段文字，不加区块标题。
+   字号略大、行距更松，字体挑圆润好认的——Comic Sans MS 在 Windows 和 macOS 上都有，
+   后面两个是 macOS 与开源替代，最后退回常规无衬线。 */
+.ds-kid-p {
+	margin: 0 0 10px;
+	font-family: "Comic Sans MS", "Segoe Print", "Comic Neue", "Chalkboard SE", Verdana, sans-serif;
+	font-size: 1.12em;
+	line-height: 1.75;
+}
+
+.ds-kid-p:last-child {
+	margin-bottom: 0;
+}
+
+/* 幼儿模式里允许一点点排版：加粗与换色，别喧宾夺主 */
+.ds-kid-p strong {
+	font-weight: 700;
+}
+
+.ds-kid-em {
+	color: var(--accent-blue, #4072e5);
+	font-weight: 600;
+}
+
+/* 幼儿模式的词条也跟着放大，用同一种字体 */
+.ds-kid .ds-word {
+	font-family: "Comic Sans MS", "Segoe Print", "Comic Neue", "Chalkboard SE", Verdana, sans-serif;
+	font-size: 1.35em;
+}
+
+/* 原句与译文。选中的那处在本地定位后用底色高亮挑出来 */
+.ds-sentence {
+	word-break: break-word;
+}
+
+.ds-hl {
+	background-color: var(--accent-yellow30, rgba(250, 167, 0, 0.35));
+	border-radius: 2px;
+	padding: 0 1px;
+}
+
+.ds-block {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.ds-label {
+	font-size: 0.8em;
+	color: var(--fill-secondary, #767676);
+	text-transform: none;
+}
+
+.ds-text {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.ds-translation {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.ds-examples {
+	margin: 0;
+	padding-inline-start: 18px;
+}
+
+.ds-examples > li {
+	margin-bottom: 4px;
+}
+
+.ds-ex-source {
+	font-style: italic;
+}
+
+.ds-ex-trans {
+	color: var(--fill-secondary, #767676);
+}
+
+.ds-error {
+	color: var(--color-red, #d33);
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.ds-footer {
+	color: var(--fill-secondary, #767676);
+	font-size: 0.78em;
+	margin-top: 6px;
+}
+
+.ds-details {
+	margin-top: 6px;
+	font-size: 0.85em;
+}
+
+.ds-details > summary {
+	cursor: pointer;
+	color: var(--color-accent, #2b7cd3);
+}
+
+.ds-context {
+	white-space: pre-wrap;
+	word-break: break-word;
+	max-height: 220px;
+	overflow: auto;
+	margin: 6px 0 0;
+	padding: 6px;
+	border-radius: 4px;
+	background: var(--fill-quinary, rgba(0, 0, 0, 0.04));
+	font-family: inherit;
+}
+
+.ds-spinner-row {
+	color: var(--fill-secondary, #767676);
+}
+
+/* ── 阅读器划词弹窗里的按钮 ─────────────────────── */
+
+.ds-popup {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 4px 0;
+}
+
+.ds-popup-button {
+	border: 1px solid var(--color-border, rgba(0, 0, 0, 0.2));
+	border-radius: 4px;
+	background: var(--material-background, #fff);
+	color: inherit;
+	padding: 2px 8px;
+	cursor: pointer;
+	font-size: inherit;
+	white-space: nowrap;
+}
+
+.ds-popup-button:hover {
+	background: var(--fill-quinary, rgba(0, 0, 0, 0.06));
+}
+
+.ds-popup-button[disabled] {
+	opacity: 0.6;
+	cursor: default;
+}
+
+.ds-popup-status {
+	font-size: 0.8em;
+	max-width: 220px;
+	word-break: break-word;
+}
+
+.ds-popup-status-busy,
+.ds-popup-status-done {
+	color: var(--fill-secondary, #767676);
+}
+
+.ds-popup-status-error {
+	color: var(--color-red, #d33);
+}

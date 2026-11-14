@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "英文助手",
+  "version": "0.1.0",
+  "description": "Zotero 里的英文阅读助手：划词翻译（结合 PDF 原文上下文与文献信息判断语境义，给出词形、释义、词源、例句），以及整本英文文献的词频统计（结果以 CSV 写在 PDF 同目录）。",
+  "author": "klskzyh",
+  "homepage_url": "https://github.com/klskzyh/zotero-english-assistant",
+  "icons": {
+    "48": "chrome/content/icons/favicon-48.png",
+    "96": "chrome/content/icons/favicon-96.png"
+  },
+  "applications": {
+    "zotero": {
+      "id": "english-assistant@klskz.local",
+      "update_url": "https://raw.githubusercontent.com/klskzyh/zotero-english-assistant/main/update.json",
+      "strict_min_version": "7.0",
+      "strict_max_version": "10.9.9"
+    }
+  }
+}

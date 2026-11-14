@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- 单词本窗口。页面只提供骨架：顶栏、3×3 卡片网格、翻页控件。
+     卡片由插件里的 wordbook.js 在窗口加载后填入，逻辑不写在这一页里。 -->
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://english-assistant/content/styles/wordbook.css" type="text/css"?>
+<window id="ea-wordbook"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        title="单词本"
+        windowtype="ea:wordbook"
+        width="900"
+        height="760"
+        minwidth="520"
+        minheight="420">
+  <vbox flex="1" class="ea-wb-root">
+    <hbox class="ea-wb-bar" align="center">
+      <label id="ea-wordbook-count" value="共 0 个" />
+      <spacer flex="1" />
+      <menulist id="ea-wordbook-order" value="normal" tooltiptext="当前页的显示顺序（只在这次打开期间有效）">
+        <menupopup>
+          <menuitem value="normal" label="按收藏顺序" />
+          <menuitem value="reverse" label="逆向显示" />
+          <menuitem value="shuffle" label="乱序显示" />
+        </menupopup>
+      </menulist>
+      <menulist id="ea-wordbook-mode" value="both" tooltiptext="卡片显示什么（只在这次打开期间有效）">
+        <menupopup>
+          <menuitem value="both" label="中英文" />
+          <menuitem value="en" label="仅英文" />
+          <menuitem value="zh" label="仅中文" />
+          <menuitem value="blank" label="完全空白" />
+        </menupopup>
+      </menulist>
+      <button id="ea-wordbook-remove-page" label="移除一整页" />
+    </hbox>
+
+    <html:div id="ea-wordbook-grid" class="ea-wb-grid" />
+
+    <html:div id="ea-wordbook-empty" class="ea-wb-empty">
+      单词本还是空的。在 PDF 里翻译一个词，然后点结果卡片上的「收藏」。
+    </html:div>
+
+    <hbox class="ea-wb-pager" align="center" pack="center">
+      <button id="ea-wordbook-prev" label="上一页" />
+      <label id="ea-wordbook-pageinfo" value="第 1 / 1 页" />
+      <button id="ea-wordbook-next" label="下一页" />
+    </hbox>
+  </vbox>
+</window>

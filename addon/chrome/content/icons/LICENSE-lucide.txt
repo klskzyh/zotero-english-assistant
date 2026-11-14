@@ -1,0 +1,29 @@
+本目录下的 SVG 图标取自 Lucide：
+
+  section-16.svg / section-20.svg      翻译区块，图形是 languages
+  wordfreq-16.svg / wordfreq-20.svg    词频区块，图形是 arrow-down-wide-narrow
+
+这两个都属 Lucide 原创图标，不在此仓库 LICENSE 里那份 Feather 派生清单中，
+所以只适用下面的 ISC 条款。
+
+图形本身只改了描边颜色与粗细，路径数据未改动。
+
+---
+
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+来源：https://github.com/lucide-icons/lucide

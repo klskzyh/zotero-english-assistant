@@ -1,0 +1,5 @@
+语料：chinese.txt
+判定：script
+理由：检出中日韩文字占全部字母的 100.0%（上限 2%），判定为非英文文献。
+
+[WordFreq] lang=script tokens=0 nonLatin=100.0% diacritic=0.0% en=0.0% runnerUp=null:0.0% margin=inf

@@ -1,0 +1,14 @@
+<!-- 条目面板区块标题前的图标，16×16。
+     图形取自 Lucide 的 languages（文 + A）。描边色写死成 Zotero 的 accent-blue（#4072e5），
+     和 Zotero 自带「信息」区块的图标同色；这个颜色在浅色和深色主题下取值相同，
+     所以没有跟着 Zotero 的次级填充色走。
+     改这份文件时注意：XML 注释里不能出现连续两个减号，所以这里不写 CSS 变量的全名。
+     ISC 许可，版权与许可全文见同目录 LICENSE-lucide.txt。 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4072e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m5 8 6 6"/>
+  <path d="m4 14 6-6 2-3"/>
+  <path d="M2 5h12"/>
+  <path d="M7 2h1"/>
+  <path d="m22 22-5-10-5 10"/>
+  <path d="M14 18h6"/>
+</svg>

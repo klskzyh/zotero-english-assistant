@@ -1,0 +1,9 @@
+<!-- 词频区块的侧栏图标（也是设置列表里「英文助手 · 词频」那一项的图标），20×20。
+     图形取自 Lucide 的 arrow-down-wide-narrow（降序条形 + 箭头），对应按词次排出的那张表。
+     描边色写死成 Zotero 的 accent-green（#39bf68），和翻译区块的 accent-blue 区分开。
+     同一份路径在 16×16 下描边权重取 2，这里取 1.8，两个尺寸看起来一样粗。
+     改这份文件时注意：XML 注释里不能出现连续两个减号，所以这里不写 CSS 变量的全名。
+     ISC 许可，版权与许可全文见同目录 LICENSE-lucide.txt。 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#39bf68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m3 16l4 4l4-4m-4 4V4m4 0h10M11 8h7m-7 4h4"/>
+</svg>

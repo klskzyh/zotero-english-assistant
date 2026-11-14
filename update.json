@@ -1,0 +1,18 @@
+{
+  "addons": {
+    "english-assistant@klskz.local": {
+      "updates": [
+        {
+          "version": "0.1.0",
+          "update_link": "https://github.com/klskzyh/zotero-english-assistant/releases/download/v0.1.0/english-assistant.xpi",
+          "update_hash": "sha256:5ca2ff4899381e160205e38e96d3d754c0d799d779632bf5c81600cb46b72834",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "7.0"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

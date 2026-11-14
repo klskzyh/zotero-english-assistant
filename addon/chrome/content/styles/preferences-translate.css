@@ -1,0 +1,87 @@
+/* 首选项面板的样式。
+ * 面板片段加载在设置窗口里，这个窗口不会有主窗口那套样式，所以布局要自己写。 */
+
+#ea-translate-prefs {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+#ea-translate-prefs groupbox {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin-bottom: 8px;
+}
+
+/* 标签在上、输入框在下的整行字段 */
+.ds-pref-field {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+/* 作者样式表里的 display 会盖掉 XUL 默认的 [hidden] 规则，
+ * 「自定义」时显隐的协议字段要自己写一条。 */
+#ea-translate-prefs .ds-pref-field[hidden] {
+	display: none;
+}
+
+/* 一行里排输入框和说明 */
+.ds-pref-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ds-pref-text {
+	width: 100%;
+	max-width: 34em;
+}
+
+/* 模型下拉：给足宽度，长模型名（OpenRouter 那种带斜杠的）不至于被截成省略号。
+ * 完整名字另外挂在 menuitem 的 tooltiptext 上，鼠标停留能看到。 */
+#ds-pref-model {
+	min-width: 22em;
+	max-width: 34em;
+}
+
+/* 弹层里的选项也放开宽度，否则下拉展开后照样截断 */
+#ds-pref-model menupopup menuitem {
+	max-width: 40em;
+}
+
+/* 读取模型 / 测试连接 执行期间按钮会临时禁用，视觉上也淡一点 */
+#ds-pref-models[disabled="true"],
+#ds-pref-test[disabled="true"] {
+	opacity: 0.6;
+}
+
+/* 说明文字：小一号、灰色、允许折行 */
+.ds-pref-help {
+	color: var(--fill-secondary, #767676);
+	font-size: 0.9em;
+	white-space: normal;
+	max-width: 44em;
+}
+
+/* XUL 的 label 默认不换行，说明文字需要放开 */
+#ea-translate-prefs label.ds-pref-help {
+	white-space: normal;
+}
+
+/* 合并成一个面板后，翻译与词频各自有个大标题，用分隔线断开 */
+.ea-prefs-title {
+  margin-top: 1.2em;
+  margin-bottom: 0.2em;
+}
+
+.ea-prefs-title h2 {
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.ea-prefs-divider {
+  margin: 1.4em 0 0.4em 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.35);
+}

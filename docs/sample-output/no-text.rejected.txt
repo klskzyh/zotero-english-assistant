@@ -1,0 +1,5 @@
+语料：no-text.txt
+判定：too-short
+理由：正文里可用的词只有 0 个，少于判定的下限 300 个，无法可靠判断语言。若这是扫描件，请先做 OCR。
+
+[WordFreq] lang=too-short tokens=0 nonLatin=0.0% diacritic=0.0% en=0.0% runnerUp=null:0.0% margin=inf

@@ -1,0 +1,33 @@
+/* 首选项面板的排版。Zotero 会把这个文件注入到设置窗口里。 */
+
+#ea-wordfreq-prefs {
+  max-width: 46em;
+}
+
+#ea-wordfreq-prefs groupbox {
+  margin-bottom: 1em;
+}
+
+.wf-pref-row {
+  align-items: center;
+  gap: 0.5em;
+  margin: 0.35em 0;
+}
+
+.wf-pref-help {
+  color: #767676;
+  font-size: 0.9em;
+  margin: 0 0 0.4em 0;
+}
+
+#ea-wordfreq-prefs checkbox {
+  margin: 0.25em 0;
+}
+
+/* 数字输入框统一宽度：两个框一样大，右边缘对齐，看起来是一列 */
+#ea-wordfreq-prefs .wf-pref-num {
+  width: 4.2em;
+  min-width: 4.2em;
+  max-width: 4.2em;
+  text-align: center;
+}

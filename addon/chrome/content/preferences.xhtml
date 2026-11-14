@@ -1,0 +1,204 @@
+<linkset>
+  <html:link rel="localization" href="english-assistant.ftl" />
+</linkset>
+
+<!--
+  英文助手的设置面板。翻译与词频合在这一个入口里，上面是翻译，下面是词频，
+  中间用一条分隔线断开。
+
+  输入控件一律用 html:input：XUL 的 textbox 在 Zotero 7 之后已经移除，
+  写了不会渲染，界面上只会剩下标签。
+  设置项的读写由 preference 属性自动完成：文本框读 value，勾选框读 checked，
+  下拉框（menulist）读 value。
+
+  两个片段各自的交互在 scripts/main.js 的 prefsPane.onLoad 里接线，
+  由 #ea-prefs-root 的 load 事件触发一次。
+-->
+
+<vbox id="ea-prefs-root" onload="Zotero.EnglishAssistant.prefsRoot.onLoad(event)">
+  <groupbox>
+    <label><html:h2>右侧区块</html:h2></label>
+
+    <checkbox id="ea-pref-section-translate" native="true"
+              preference="extensions.englishAssistant.sections.translate"
+              label="在条目右侧显示「AI 翻译」" />
+    <checkbox id="ea-pref-section-wordfreq" native="true"
+              preference="extensions.englishAssistant.sections.wordfreq"
+              label="在条目右侧显示「整本词频」" />
+    <checkbox id="ea-pref-section-wordfreqParts" native="true"
+              preference="extensions.englishAssistant.sections.wordfreqParts"
+              label="在条目右侧显示「分部词频」" />
+  </groupbox>
+
+  <separator class="ea-prefs-divider" />
+  <label class="ea-prefs-title"><html:h2>翻译</html:h2></label>
+<vbox id="ea-translate-prefs">
+  <groupbox>
+    <label><html:h2>AI 服务</html:h2></label>
+
+    <vbox class="ds-pref-field">
+      <label value="服务商" control="ds-pref-provider" />
+      <menulist id="ds-pref-provider"
+                preference="extensions.englishAssistant.translate.provider">
+        <menupopup>
+          <menuitem value="deepseek" label="DeepSeek（深度求索）" />
+          <menuitem value="openai" label="OpenAI" />
+          <menuitem value="moonshot" label="月之暗面 Kimi" />
+          <menuitem value="zhipu" label="智谱 GLM" />
+          <menuitem value="dashscope" label="通义千问（阿里云）" />
+          <menuitem value="siliconflow" label="硅基流动" />
+          <menuitem value="openrouter" label="OpenRouter" />
+          <menuitem value="groq" label="Groq" />
+          <menuitem value="ollama" label="Ollama（本机）" />
+          <menuitem value="lmstudio" label="LM Studio（本机）" />
+          <menuitem value="anthropic" label="Anthropic Claude" />
+          <menuitem value="gemini" label="Google Gemini" />
+          <menuitem value="custom" label="自定义" />
+        </menupopup>
+      </menulist>
+    </vbox>
+
+    <vbox class="ds-pref-field">
+      <label value="服务地址" control="ds-pref-baseURL" />
+      <html:input type="text" id="ds-pref-baseURL"
+                  preference="extensions.englishAssistant.translate.baseURL"
+                  class="ds-pref-text" />
+      <label class="ds-pref-help">默认地址随服务商自动切换，一般不用改；确有需要也可以自己改。</label>
+    </vbox>
+
+    <vbox class="ds-pref-field">
+      <label value="API Key" control="ds-pref-apiKey" />
+      <html:input type="password" id="ds-pref-apiKey"
+                  preference="extensions.englishAssistant.translate.apiKey"
+                  class="ds-pref-text" />
+      <label class="ds-pref-help">只保存在本机 Zotero 配置里，不会同步。Ollama 与 LM Studio 这类本机服务可以留空。</label>
+    </vbox>
+
+    <vbox class="ds-pref-field" id="ds-pref-protocol-field" hidden="true">
+      <label value="协议" control="ds-pref-protocol" />
+      <menulist id="ds-pref-protocol"
+                preference="extensions.englishAssistant.translate.protocol">
+        <menupopup>
+          <menuitem value="openai" label="OpenAI 兼容（/chat/completions）" />
+          <menuitem value="anthropic" label="Anthropic（/v1/messages）" />
+          <menuitem value="gemini" label="Google Gemini（/v1beta）" />
+        </menupopup>
+      </menulist>
+      <label class="ds-pref-help">自定义地址时用它指明对方说的是哪一套接口。</label>
+    </vbox>
+
+    <vbox class="ds-pref-field">
+      <label value="模型" />
+      <hbox class="ds-pref-row" align="center">
+        <menulist id="ds-pref-model" class="ds-pref-model" flex="1">
+          <menupopup />
+        </menulist>
+        <button id="ds-pref-models" label="读取模型" />
+      </hbox>
+      <label id="ds-pref-models-status" class="ds-pref-help" />
+    </vbox>
+
+    <vbox class="ds-pref-field">
+      <label value="模型名（备用）" control="ds-pref-model-text" />
+      <html:input type="text" id="ds-pref-model-text"
+                  preference="extensions.englishAssistant.translate.model"
+                  class="ds-pref-text" />
+      <label class="ds-pref-help">这里一般不需要自己填；上方读不到模型名时，可以在这里手动填写。</label>
+    </vbox>
+
+    <hbox class="ds-pref-row" align="center">
+      <button id="ds-pref-test" label="测试连接" />
+      <label id="ds-pref-test-status" flex="1" />
+    </hbox>
+  </groupbox>
+
+  <groupbox>
+    <label><html:h2>翻译行为</html:h2></label>
+
+    <vbox class="ds-pref-field">
+      <label value="解释语言" control="ds-pref-explainMode" />
+      <menulist id="ds-pref-explainMode" preference="extensions.englishAssistant.translate.explainMode">
+        <menupopup>
+          <menuitem value="zh" label="简体中文（默认）" />
+          <menuitem value="zh-lite" label="简体中文·精简" />
+          <menuitem value="en-simple" label="简单英文" />
+          <menuitem value="en-minimal" label="简单英文·极简" />
+        </menupopup>
+      </menulist>
+      <label class="ds-pref-help">简体中文（默认）：给出选定词句的中文释义，等待时间较长，建议切换到 flash 等速度较快的模型再使用。</label>
+      <label class="ds-pref-help">简体中文·精简：只给通用释义和在本句中的含义。</label>
+      <label class="ds-pref-help">简单英文：用两三段非常简单的英文解释选中的内容。</label>
+      <label class="ds-pref-help">简单英文·极简：和上一条类似，但更精简，通常只给一句话。</label>
+    </vbox>
+
+    <checkbox id="ds-pref-includeContext"
+              preference="extensions.englishAssistant.translate.includeContext"
+              label="让模型参考 PDF 原文上下文" native="true" />
+    <checkbox id="ds-pref-includeMetadata"
+              preference="extensions.englishAssistant.translate.includeMetadata"
+              label="把文献标题、作者、摘要发给模型" native="true" />
+
+  </groupbox>
+
+
+</vbox>
+
+
+  <separator class="ea-prefs-divider" />
+
+  <label class="ea-prefs-title"><html:h2>词频</html:h2></label>
+
+<vbox id="ea-wordfreq-prefs">
+  <groupbox>
+    <label><html:h2>统计方式</html:h2></label>
+
+    <checkbox id="wf-pref-lemmatize"
+              preference="extensions.englishAssistant.wordfreq.lemmatize"
+              label="合并同一个词的屈折变化（包括单复数、动词时态、不规则形式的合并统计）" native="true" />
+
+    <checkbox id="wf-pref-skipSingles"
+              preference="extensions.englishAssistant.wordfreq.skipSingles"
+              label="忽略只出现一次的词" native="true" />
+
+    <hbox class="wf-pref-row">
+      <html:input type="text" id="wf-pref-minWordLength" class="wf-pref-num"
+                  preference="extensions.englishAssistant.wordfreq.minWordLength" />
+      <label value="小于等于这个长度的单词不计入，0 表示全部计入" control="wf-pref-minWordLength" />
+    </hbox>
+
+    <hbox class="wf-pref-row">
+      <html:input type="text" id="wf-pref-topN" class="wf-pref-num"
+                  preference="extensions.englishAssistant.wordfreq.topN" />
+      <label value="只输出前 N 个高频词，0 表示全部输出" control="wf-pref-topN" />
+    </hbox>
+  </groupbox>
+  <groupbox>
+    <label><html:h2>语言判定</html:h2></label>
+
+    <checkbox id="wf-pref-langCheck"
+              preference="extensions.englishAssistant.wordfreq.langCheck"
+              label="非英文文献直接拒绝统计" native="true" />
+    <label class="wf-pref-help">注意：不建议关闭，因为非英文语言的统计效果并未经过测试！</label>
+  </groupbox>
+
+  <groupbox>
+    <label><html:h2>自定义名单</html:h2></label>
+    <hbox class="wf-pref-row" align="center">
+      <button id="wf-pref-reset-list" label="恢复默认名单" />
+      <label class="wf-pref-help" flex="1">将自定义名单恢复到初始状态，注意，这可能会导致当前名单丢失！</label>
+    </hbox>
+  </groupbox>
+</vbox>
+
+  <groupbox>
+    <label><html:h2>配置备份</html:h2></label>
+
+    <hbox class="ds-pref-row" align="center">
+      <button id="ds-pref-export-config" label="导出所有配置…" />
+      <button id="ds-pref-import-config" label="导入所有配置…" />
+    </hbox>
+    <label class="ds-pref-help">导出成一个 JSON 文件，里面包含本插件的全部设置：接口地址、模型、解释语言、上下文开关、词频统计方式、自定义名单等。</label>
+    <label class="ds-pref-help">文件里有 API Key，不要随意发给别人！单词本（即收藏）不会被备份，它在 Zotero 数据目录的 wordbook.json，需要单独复制那个文件。</label>
+    <label id="ds-pref-backup-status" class="ds-pref-help"></label>
+  </groupbox>
+</vbox>
