@@ -30,20 +30,11 @@
 
 ## 安装
 
-**从 Releases 装（推荐）**
-
-1. 到 [Releases](../../releases) 下载最新一版的 `english-assistant.xpi`。
+1. 在 [Releases](../../releases) 中下载最新一版的 `english-assistant.xpi`。
 2. Zotero 里「工具 → 插件」，右上角齿轮 → 「Install Plugin From File…」，选中刚下载的 `.xpi`。
 3. 重启 Zotero。
 4. 打开「编辑 → 设置 → 英文助手」，在「AI 服务」里选服务商、填 API Key、读取模型。
 
-**从源码装**
-
-```powershell
-npm run release      # 打包到 dist/english-assistant.xpi，并在文件管理器里选中它
-```
-
-然后在 Zotero 里同样用齿轮 → 「Install Plugin From File…」选中 `dist/english-assistant.xpi`。
 
 ## 支持的文件格式
 
